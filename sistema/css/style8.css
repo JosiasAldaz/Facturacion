@@ -1,0 +1,7 @@
+/* Lista Producto */
+.img_producto img{
+	width: 60px;
+	height: auto;
+	margin: auto;
+    border-radius: 110px;
+}

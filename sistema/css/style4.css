@@ -1,0 +1,23 @@
+.form_search{
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    float: right;
+    background: initial;
+    padding: 10px;
+    border-radius: 10px;
+}
+.form_search .btn_search{
+    background: #1faac8;
+    color: #FFF;
+    padding: 0 20px;
+    border: 0;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.input_b{
+    /* margin-left: 40px; */
+    width: 210px;
+}

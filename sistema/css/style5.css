@@ -1,0 +1,48 @@
+
+.form_search{
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    float: right;
+    background: initial;
+    padding: 10px;
+    border-radius: 10px;
+}
+.form_search .btn_search{
+    background: #1faac8;
+    color: #FFF;
+    padding: 0 10px;
+    border: 0;
+    cursor: pointer;
+    margin-left: 10px;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    border-radius: 5px;
+}
+/* Estilo para el scrollbar */
+::-webkit-scrollbar {
+    width: 12px; /* Ancho del scrollbar */
+    height: 12px; /* Altura del scrollbar */
+  }
+  
+  /* Estilo para el thumb (el botón del scrollbar) */
+  ::-webkit-scrollbar-thumb {
+    background: #ffff; /* Color del fondo del thumb */
+    border-radius: 6px; /* Radio de la esquina del thumb */
+  }
+  
+  /* Estilo para el track (la barra del scrollbar) */
+  ::-webkit-scrollbar-track {
+    background: #f0f0f0; /* Color del fondo del track */
+    border-radius: 6px; /* Radio de la esquina del track */
+  }
+  
+  /* Estilo para el botón del scrollbar cuando se está desplazando */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ffff; /* Color del fondo del thumb cuando se está desplazando */
+  }

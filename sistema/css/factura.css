@@ -1,0 +1,64 @@
+.form_search_date{
+    padding: 10px;
+    display: 10px;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 10px;
+    margin: 10px auto;
+}
+.form_search_date label{
+    margin: 0 10px;
+}
+.form_search_date input{
+    width: auto;
+}
+.form_search_date .btn_view{
+    padding: 8px;
+}
+.btn_view{
+    background-color: #0089a8;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px;
+    margin: 0 3px;
+    color: #fff;
+    
+}
+.form_search_date label, .form_search_date input {
+    display: inline-block;
+    vertical-align: middle;
+}
+.div_acciones{
+    display: -webkit-flex;
+    display:-moz-flex;
+    display:-ms-flex;
+    display:-o-flex;
+    display:flex;
+    justify-content: center;
+
+}
+.totalfactura{
+    display: -webkit-flex;
+    display:-moz-flex;
+    display:-ms-flex;
+    display:-o-flex;
+    display:flex;
+    justify-content: space-between;
+}
+.pagada, .anulada{
+    color: #fff;
+    background: #60a756;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px 15px;
+
+}
+.anulada{
+    background: #f36a6a;
+}
+.inactive{
+    background-color: #a4a4a4;
+    color: #CCC;
+    cursor: default;
+}
