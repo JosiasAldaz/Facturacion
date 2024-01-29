@@ -3,13 +3,13 @@
     session_start();
     include "../conexion.php";
     include ("../validacion.php");
-    $cedula = ($_POST['cedula']);
-    $nombre = ($_POST['nombre']);
-    $teleofno = ($_POST['telefono']);
-    $direccion = ($_POST['direccion']);
+    $cedula_val = ($_POST['cedula']);
+    $nombre_val = ($_POST['nombre']);
+    $teleofno_val = ($_POST['telefono']);
+    $direccion_val = ($_POST['direccion']);
     $alert='';
-    $resultadoVal = camposCliente($cedula,$nombre,$teleofno,$direccion);
-    echo($resultadoVal);
+    $resultadoVal = camposCliente($cedula_val,$nombre_val,$teleofno_val,$direccion_val);
+
     switch ($resultadoVal) {        
         case "cedula":
             $alert='<p class="msg_error">LA CÉDULA ES OBLIGATORIA</p>';
@@ -31,10 +31,9 @@
             $usuario_id=$_SESSION['idUser'];
 
             $result=0;
-
             if(is_numeric($cedula) and $cedula !=0){
                 $query=mysqli_query($conection, "SELECT * FROM cliente WHERE cedula='$cedula'");
-                $result=mysqli_fetch_array($query);
+                $result=mysqli_num_rows($query);
 
             }
 

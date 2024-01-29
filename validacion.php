@@ -30,7 +30,8 @@ function camposCliente($cedula,$nombre,$telefono,$direccion):string{
     }else{
         $retorno = "correcto";
     }
+    //echo ($retorno);
     return $retorno;
-    echo ($retorno);
+
 }
 ?>
