@@ -1,19 +1,29 @@
 <?php
-
     //Control de url de Administrador
     session_start();
-    
-
     include "../conexion.php";
-
-    if(!empty($_POST)){
-        $alert='';
-        if(empty($_POST['cedula']) || empty($_POST['nombre']) ||
-             empty($_POST['direccion'])   ){
-
-            $alert='<p class="msg_error">Todos los campos son obligatorios.</p>';
-        }else{
-
+    include ("../validacion.php");
+    $cedula = ($_POST['cedula']);
+    $nombre = ($_POST['nombre']);
+    $teleofno = ($_POST['telefono']);
+    $direccion = ($_POST['direccion']);
+    $alert='';
+    $resultadoVal = camposCliente($cedula,$nombre,$teleofno,$direccion);
+    echo($resultadoVal);
+    switch ($resultadoVal) {        
+        case "cedula":
+            $alert='<p class="msg_error">LA CÉDULA ES OBLIGATORIA</p>';
+            break;
+        case "nombre":
+            $alert='<p class="msg_error">EL NOMBRE ES OBLIGATORIO</p>';
+            break;
+        case "telefono":
+            $alert='<p class="msg_error">EL TELEFONO ES OBLIGATORIO</p>';
+            break;
+        case "direccion":
+            $alert='<p class="msg_error">LA DIRECCION ES OBLIGATORIA</p>';
+            break;
+        case "correcto":
             $cedula=$_POST['cedula'];
             $nombre=$_POST['nombre'];
             $telefono=$_POST['telefono'];
@@ -41,17 +51,17 @@
                     $alert='<p class="msg_error">Error al crear un Cliente.</p>';
                 }
             }
-        }
+            break;
+    }   
         mysqli_close($conection);
 
-    }
+    
 ?>
 
 
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <?php include_once "includes/scripts.php"; ?>
@@ -81,7 +91,6 @@
 
                 <label for="direccion">Direccion</label>
                 <input type="text" name="direccion" id="direccion" placeholder="Direccion Completa">
-
                 <input type="submit" value="Guardar Cliente" class="btn_save">
             </form>
 
