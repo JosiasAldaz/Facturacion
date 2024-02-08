@@ -34,4 +34,7 @@ function camposCliente($cedula,$nombre,$telefono,$direccion):string{
     return $retorno;
 
 }
+
+
+
 ?>

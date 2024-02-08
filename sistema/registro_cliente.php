@@ -3,6 +3,8 @@
     session_start();
     include "../conexion.php";
     include ("../validacion.php");
+    
+    if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     $cedula_val = ($_POST['cedula']);
     $nombre_val = ($_POST['nombre']);
     $teleofno_val = ($_POST['telefono']);
@@ -10,7 +12,7 @@
     $alert='';
     $resultadoVal = camposCliente($cedula_val,$nombre_val,$teleofno_val,$direccion_val);
 
-    switch ($resultadoVal) {        
+    switch ($resultadoVal) {       
         case "cedula":
             $alert='<p class="msg_error">LA CÉDULA ES OBLIGATORIA</p>';
             break;
@@ -24,6 +26,17 @@
             $alert='<p class="msg_error">LA DIRECCION ES OBLIGATORIA</p>';
             break;
         case "correcto":
+            if(!is_numeric($cedula_val)){
+                $alert='<p class="msg_error">LA CÉDULA DEBE TENER SOLO NÚMEROS</p>';
+            }elseif(!ctype_alpha($nombre_val)){
+                $alert='<p class="msg_error">EL NOMBRE DEBE TENER SOLO LETRAS</p>';
+            }elseif(!ctype_digit($teleofno_val)){
+                $alert='<p class="msg_error">EL TELEFONO DEBE TENER SOLO NÚMEROS</p>';
+            }elseif(strlen($cedula_val) !== 10 && strlen($cedula_val) !==13){
+                $alert='<p class="msg_error">LA CÉDULA DEBE TENER 10 O 13 DÍGITOS</p>';
+            }elseif(strlen($teleofno_val) !== 10){
+                $alert='<p class="msg_error">EL TELÉFONO DEBE TENER 10 DÍGITOS</p>';
+            }else{
             $cedula=$_POST['cedula'];
             $nombre=$_POST['nombre'];
             $telefono=$_POST['telefono'];
@@ -50,10 +63,11 @@
                     $alert='<p class="msg_error">Error al crear un Cliente.</p>';
                 }
             }
+            mysqli_close($conection);
+            }
             break;
-    }   
-        mysqli_close($conection);
-
+    } 
+    }
     
 ?>
 
@@ -86,10 +100,10 @@
                 <input type="text" name="nombre" id="nombre" placeholder="Nombre Completo" require>
 
                 <label for="telefono">Telefono</label>
-                <input type="text" name="telefono" id="telefono" placeholder="Telefono">
+                <input type="text" name="telefono" id="telefono" placeholder="Telefono" require>
 
                 <label for="direccion">Direccion</label>
-                <input type="text" name="direccion" id="direccion" placeholder="Direccion Completa">
+                <input type="text" name="direccion" id="direccion" placeholder="Direccion Completa" require>
                 <input type="submit" value="Guardar Cliente" class="btn_save">
             </form>
 
