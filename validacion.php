@@ -32,9 +32,24 @@ function camposCliente($cedula,$nombre,$telefono,$direccion):string{
     }
     //echo ($retorno);
     return $retorno;
-
 }
 
+function camposUsuario($cedula,$nombre,$telefono,$direccion):string{
+    $retorno = "";
+    if((empty($cedula))){
+        $retorno = "cedula";
+    }else if((empty($nombre))){
+        $retorno = "nombre";
+    }elseif ((empty($telefono))) {
+        $retorno = "telefono";
+    }else if((empty($direccion))) {
+        $retorno = "direccion";
+    }else{
+        $retorno = "correcto";
+    }
+    //echo ($retorno);
+    return $retorno;
+}
 
 
 ?>

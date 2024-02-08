@@ -1,27 +1,36 @@
 <?php
 
     //Control de url de Administrador
+    include "../conexion.php";
     session_start();
+    //VARIABLES PARA VALIDAR
+    
+
     if($_SESSION['rol'] != 1){
         header("location: ./");
     }
 
-    include "../conexion.php";
-
     if(!empty($_POST)){
         $alert='';
-        if(empty($_POST['nombre']) || empty($_POST['correo']) || empty($_POST['usuario'])
-        || empty($_POST['clave']) || empty($_POST['rol']) ){
-
+        if(empty($_POST['nombre']) || empty($_POST['correo']) || empty($_POST['usuario'])|| empty($_POST['clave']) 
+        || empty($_POST['rol']) ){
             $alert='<p class="msg_error">Todos los campos son obligatorios.</p>';
         }else{
-
+            $nombre_val=$_POST['nombre'];
+            $email_val=$_POST['correo'];
+            $user_val=$_POST['usuario'];
+            $clave_val=md5($_POST['clave']);
+            $rol_val=$_POST['rol'];
+            if(!preg_match("/^[a-zA-Z ]+$/", $nombre_val)){
+                $alert='<p class="msg_error">EL NOMBRE DEBE TENER SOLO LETRAS</p>';
+            }elseif(!filter_var($email_val, FILTER_VALIDATE_EMAIL)){
+                $alert='<p class="msg_error">EL CORREO ELECTRÓNICO NO ES VÁLIDO</p>';
+            }else{
             $nombre=$_POST['nombre'];
             $email=$_POST['correo'];
             $user=$_POST['usuario'];
             $clave=md5($_POST['clave']);
             $rol=$_POST['rol'];
-
             $query= mysqli_query($conection,"SELECT * FROM usuario WHERE usuario= '$user' OR correo= '$email'");
             //mysqli_close($conection);
             $result =mysqli_fetch_array($query);
@@ -38,6 +47,8 @@
                     $alert='<p class="msg_error">Error al crear un usuario.</p>';
                 }
             }
+            }
+            
         }
     }
 
