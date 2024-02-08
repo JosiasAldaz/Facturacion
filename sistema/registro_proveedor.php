@@ -15,7 +15,18 @@
 
             $alert='<p class="msg_error">Todos los campos son obligatorios.</p>';
         }else{
-
+            $proveedor_val=$_POST['proveedor'];
+            $contacto_val=$_POST['contacto'];
+            $telefono_val=$_POST['telefono'];
+            $direccion_val=$_POST['direccion'];
+            $usuario_id=$_SESSION['idUser'];
+            if(!preg_match("/^[a-zA-Z ]+$/",$proveedor_val)){
+                $alert='<p class="msg_error">EL PROVEEDOR DEBE TENER SOLO LETRAS</p>';
+            }elseif(!preg_match("/^[a-zA-Z ]+$/",$contacto_val)){
+                $alert='<p class="msg_error">EL CONTACTO DEBE TENER SOLO LETRAS</p>';
+            }elseif(!ctype_digit($telefono_val)){
+                $alert='<p class="msg_error">EL TELEFONO DEBE TENER SOLO NÚMEROS</p>';
+            }else{
             $proveedor=$_POST['proveedor'];
             $contacto=$_POST['contacto'];
             $telefono=$_POST['telefono'];
@@ -43,6 +54,7 @@
                     $alert='<p class="msg_error">Error al crear un Proveedor.</p>';
                 }
             // }
+            } 
         }
         mysqli_close($conection);
 
